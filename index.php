@@ -122,16 +122,21 @@ $essereUmano->muori();
 
 class Stanza {
 
-    private $nomeStanza = 'salotto';
+    private $nomeStanza;
 
     private $invitati = [];
 
+    public function __construct($nomeStanza = 'salotto')
+    {
+        $this->nomeStanza = $nomeStanza;        
+    }
+
     public function aggiungiInvitato(string $nomeInvitato) {
-        // completare...
+        $this->invitati[] = $nomeInvitato;
     }
 
     public function getListaInvitati() {
-        // completare...
+        return $this->invitati;
     }
 
 }
@@ -140,3 +145,16 @@ class Stanza {
 // un salotto e un balcone. Inserire gli invitati in una e nell'altra stanza
 // e stampare gli invitati presenti in ciascuna stanza. 
 // --> naturalmente bisogna completare i due metodi
+
+
+$salotto = new Stanza();
+$salotto->aggiungiInvitato('Ciccio');
+$salotto->aggiungiInvitato('Anna');
+
+print_r($salotto->getListaInvitati());
+
+$balcone = new Stanza('balcone');
+$balcone->aggiungiInvitato('Pino');
+$balcone->aggiungiInvitato('Maria');
+
+print_r($balcone->getListaInvitati());
