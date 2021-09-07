@@ -1,5 +1,7 @@
 <?php
 
+require_once('animal.php');
+
 /*
 
 Iniziamo subito con uno snack :slightly_smiling_face:
@@ -18,6 +20,10 @@ addAnimal($nomeAnimale);
 quindi dobbiamo spostarla dalla nostra fattoria 
 con un removeAnimal($nomeAnimale)
 
+- al posto della stringa che descrive l'animale
+utilizziamo le classi (e gli oggetti) a partire
+da animal.php
+
 */
 
 
@@ -35,7 +41,7 @@ class Fattoria {
         $this->address = $indirizzo;   
     }
 
-    public function addAnimal(string $nomeAnimale) {
+    public function addAnimal(Animal $nomeAnimale) {
         $this->animals[] = $nomeAnimale;
     }
 
@@ -43,10 +49,13 @@ class Fattoria {
         return $this->animals;
     }
 
-    public function removeAnimal(string $nomeAnimale) {
+    public function removeAnimal(Animal $nomeAnimale) {
         // dovremmo fare l'unset di una gallina nell'array
         // a partire dalla sua key -> primo step, trovare la key della gallina 
 
+        // Sviluppare il remove attraverso l'oggetto che riceve il metodo.
+
+        /*
         // unset($array[$key])
         $keyAnimalToRemove = array_search($nomeAnimale, $this->animals);
 
@@ -57,6 +66,7 @@ class Fattoria {
         // array_values prende solo i valori da un array
         // e "ricalcola"/riposiziona i valori in un array posizionale
         $this->animals = array_values($this->animals);
+        */
 
     }
 
@@ -65,6 +75,7 @@ class Fattoria {
 
 $fattoria = new Fattoria('Old West', 'new very road, 5');
 
+/*
 $fattoria->addAnimal('mucca');
 $fattoria->addAnimal('maiale');
 $fattoria->addAnimal('gallina');
@@ -77,5 +88,30 @@ echo '<br/>';
 
 $fattoria->removeAnimal('gallina');
 
-print_r($fattoria->getAnimals());
+*/
+
+
+// creaiamo un oggetto-animale
+
+$primaMucca = new Mucca();
+var_dump($primaMucca);
+
+echo "<hr/>";
+
+$maiale = new Maiale();
+
+$primaGallina = new Gallina();
+$secondaGallina = new Gallina();
+
+$gallo = new Gallo();
+
+$fattoria->addAnimal($primaMucca);
+$fattoria->addAnimal($maiale);
+$fattoria->addAnimal($primaGallina);
+$fattoria->addAnimal($secondaGallina);
+$fattoria->addAnimal($gallo);
+
+// $fattoria->removeAnimal(/* */); 
+
+var_dump($fattoria->getAnimals());
 
