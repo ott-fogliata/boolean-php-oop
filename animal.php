@@ -73,3 +73,15 @@ class Gallo extends Animal{
 
 }
 
+
+class Cavallo extends Animal{
+
+    public $daCorsa = false; // bool
+
+    public function __construct()
+    {
+        $this->label = 'cavallo';
+        $this->animalClass = 'mammifero';
+    }
+    
+}

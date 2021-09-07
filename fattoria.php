@@ -55,18 +55,24 @@ class Fattoria {
 
         // Sviluppare il remove attraverso l'oggetto che riceve il metodo.
 
-        /*
+        
         // unset($array[$key])
         $keyAnimalToRemove = array_search($nomeAnimale, $this->animals);
 
-        // todo exception
+        // verifichiamo che l'animale già esista all'interno dell'array
+        // quindi, in parole povere, che $keyAnimalToRemove non sia false.
+        // se non lo trova, non proseguiamo e lanciamo un eccezione.
+
+        if($keyAnimalToRemove === false) {
+            throw new Exception("L'animale non è presente nella fattoria");
+        }
 
         unset($this->animals[$keyAnimalToRemove]);
 
         // array_values prende solo i valori da un array
         // e "ricalcola"/riposiziona i valori in un array posizionale
-        $this->animals = array_values($this->animals);
-        */
+        // $this->animals = array_values($this->animals);
+        
 
     }
 
@@ -99,11 +105,11 @@ var_dump($primaMucca);
 echo "<hr/>";
 
 $maiale = new Maiale();
-
 $primaGallina = new Gallina();
 $secondaGallina = new Gallina();
-
+$secondaGallina->numUovaPerDay = 10;
 $gallo = new Gallo();
+$cavallo = new Cavallo();
 
 $fattoria->addAnimal($primaMucca);
 $fattoria->addAnimal($maiale);
@@ -111,7 +117,17 @@ $fattoria->addAnimal($primaGallina);
 $fattoria->addAnimal($secondaGallina);
 $fattoria->addAnimal($gallo);
 
-// $fattoria->removeAnimal(/* */); 
+try {
+    // se non c'è eccezione faccio questo:
+    $fattoria->removeAnimal($cavallo); 
+} catch (Exception $e) {
+    // la $e l'oggetto errore, creato dal PHP
+    // se qualcosa va storto, faccio questo:
+    echo "Riscontrato un errore:" . $e->getMessage();
+}
+
+
+$fattoria->removeAnimal($secondaGallina);
 
 var_dump($fattoria->getAnimals());
 
